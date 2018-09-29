@@ -130,6 +130,23 @@ pd.DataFrame(data=X_test.toarray(), columns=vocabulary).iloc[:, 0::2]
 
 There you have it, this is how texts or documents are vectorized for further analysis.
 
+## Selecting a smaller set of features
+
+Although selecting a smaller set of features is not strictly necessary, it could be computationally challenging to train a model with too many words or features.
+
+In this example, we use Scikit-learn's `SelectPercentile` to choose features with highest scores ([documentation](http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectPercentile.html)):
+
+```python
+from sklearn.feature_selection import SelectPercentile, f_classif
+
+selector = SelectPercentile(f_classif, percentile=10)
+selector.fit(features_train, labels_train)
+features_train = selector.transform(features_train).toarray()
+features_test = selector.transform(features_test).toarray()
+```
+
+The selector uses `f_classif` as score function, which computes the ANOVA F-values for the sample. Basically we are choosing the terms with largest F-values (i.e. terms or words for which the frequency mean is most likely to be different across classes or authors). This is common in order to choose the best discriminatory features across classes (out of 38,209 words initially, we end up with 3,821).
+
 
 ## Training a Naive Bayes model
 
