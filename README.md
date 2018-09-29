@@ -2,7 +2,7 @@
 
 In this example, we use a set of emails or documents that were written by two different individuals. The purpose is to train a Naive Bayes model to be able to predict who wrote a document/email, given the words used in it.
 
-The Github repository with the files used in this example can be found [here](https://github.com/duranivan). The file `nb_email_author.py` contains the script that loads the data, trains the model, and find the score of the prediction for train and test sets.
+The Github repository with the files used in this example can be found [here](https://github.com/duranivan/naivebayes-email-author). The file `nb_email_author.py` contains the script that loads the data, trains the model, and find the score of the prediction for train and test sets.
 
 Here, we explain the main parts of the script and the results.
 
